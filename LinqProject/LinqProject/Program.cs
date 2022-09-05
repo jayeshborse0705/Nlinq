@@ -15,6 +15,9 @@ namespace LinqProject
             productReview.AddProductReview();
             productReview.DisplayList();
             productReview.RetrieveTopThreeRating();
+            productReview.RetrieveTopThreeRating();
+
+
             
 
         }
