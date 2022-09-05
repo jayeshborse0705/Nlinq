@@ -42,14 +42,7 @@ namespace LinqProject
             return ProductList.Count;
         }
 
-        //Display List Content
-        public void DisplayList()
-        {
-            foreach (Product product in ProductList)
-            {
-                Console.WriteLine("ProductId: {0} || UserId: {1} || Review: {2} || Rating: {3} || IsLike:{4}\n", product.ProductId, product.UserId, product.Review, product.Rating, product.IsLike);
-            }
-        }
+       
         // UC 2: Retrieve Top Three Records Whose Rating is High
         public int RetrieveTopThreeRating()
         {
@@ -70,6 +63,27 @@ namespace LinqProject
                 Console.WriteLine("ProductId: {0} || UserId: {1} || Review: {2} || Rating: {3} || IsLike:{4}\n", product.ProductId, product.UserId, product.Review, product.Rating, product.IsLike);
             }
             return nameList;
+        }
+         // UC 4: Retrieve count of Product ID
+        public string CountingProductId()
+        {
+            string nameList = "";
+            AddProductReview();
+            var productList = ProductList.GroupBy(x => x.ProductId).Select(a => new { ProductId = a.Key, count = a.Count() });
+            foreach (var element in productList)
+            {
+                Console.WriteLine("ProductId " + element.ProductId + " " + "Count " + " " + element.count);
+                nameList += element.count + " ";
+            }
+            return nameList;
+        }
+        //Display List Content
+        public void DisplayList()
+        {
+            foreach (Product product in ProductList)
+            {
+                Console.WriteLine("ProductId: {0} || UserId: {1} || Review: {2} || Rating: {3} || IsLike:{4}\n", product.ProductId, product.UserId, product.Review, product.Rating, product.IsLike);
+            }
         }
     }
 }
